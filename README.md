@@ -5,7 +5,7 @@
 1. pip is required
 
 ```
-$ sudo apt-get install python-pip
+$ sudo apt-get install python3-pip
 ```
 
 2. Now that pip is installed we need to install virtualenv
