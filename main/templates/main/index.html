@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gourmet Growth's take-home challenge</title>
+</head>
+<body>
+    <form action="{% url 'process_json' %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Process transactions.json">
+    </form>
+    <br/>
+    <a href="{% url 'transaction_list' %}">Transaction list</a>
+     <h1>Sequences</h1>
+    {% if sequence_list %}
+        <ul>
+        {% for sequence in sequence_list %}
+            <li><a href="{% url 'sequence_detail' sequence.id %}">{{ sequence.name }} - {{ sequence.transactions.all.count }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>There are no sequences yet.</p>
+    {% endif %}
+</body>
+</html>

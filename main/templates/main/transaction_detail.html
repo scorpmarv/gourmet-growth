@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Transaction details</title>
+</head>
+<body>
+    <a href="{% url 'index' %}">Index</a>
+
+    <h1>Transaction: {{ transaction.description }}</h1>
+    <ul>
+        <li>Date: {{ transaction.date }}</li>
+        <li>Amount: {{ transaction.amount }}</li>
+        <li>Sequence: <a href="{% url 'sequence_detail' transaction.sequence.id %}">{{ transaction.sequence.name }}</a></li>
+    </ul>
+
+    <h2>Related transactions</h2>
+    {% for rel_tran in transaction.sequence.transactions.all %}
+        {% if rel_tran.id != transaction.id %}
+            <ul>
+                <li><a href="{% url 'transaction_detail' rel_tran.id %}">{{ rel_tran.description }}</a></li>
+                <li>{{ rel_tran.date }}</li>
+                <li>{{ rel_tran.amount }}</li>
+            </ul>
+        {% endif %}
+    {% endfor %}
+</body>
+</html>

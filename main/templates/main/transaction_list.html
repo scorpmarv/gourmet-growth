@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Transaction list</title>
+</head>
+<body>
+    <a href="{% url 'index' %}">Index</a>
+
+    <h1>Transactions</h1>
+    {% if transaction_list %}
+        <ul>
+        {% for transaction in transaction_list %}
+            <li><a href="{% url 'transaction_detail' transaction.id %}">{{ transaction.description }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>There are no transactions yet.</p>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sequence details</title>
+</head>
+<body>
+    <a href="{% url 'index' %}">Index</a>
+    <br/>
+    <br/>
+    <h1>Sequence: {{ sequence }}</h1>
+
+    <h3>Transactions:</h3>
+    {% for transaction in sequence.transactions.all %}
+        <ul>
+            <li><a href="{% url 'transaction_detail' transaction.id %}">{{ transaction.description }}</a></li>
+            <li>{{ transaction.date }}</li>
+            <li>{{ transaction.amount }}</li>
+        </ul>
+    {% endfor %}
+</body>
+</html>
